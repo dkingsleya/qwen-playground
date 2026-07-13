@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as initSqlJs from 'sql.js';
 import type { Database } from 'sql.js';
+import * as fs from 'fs';
 
 export interface VoucherRecord {
   id?: number;
@@ -25,7 +26,6 @@ export class VoucherService {
     
     try {
       // Try to load existing database
-      const fs = await import('fs');
       if (fs.existsSync(this.dbPath)) {
         const buffer = fs.readFileSync(this.dbPath);
         this.db = new SQL.Database(buffer);
@@ -59,7 +59,6 @@ export class VoucherService {
   private saveDatabase(): void {
     if (!this.db) return;
     
-    const fs = require('fs');
     const data = this.db.export();
     const buffer = Buffer.from(data);
     fs.writeFileSync(this.dbPath, buffer);
