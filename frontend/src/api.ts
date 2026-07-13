@@ -24,7 +24,7 @@ export interface ErrorResponse {
   message: string;
 }
 
-const API_BASE = '/api';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 export const checkVouchers = async (flightNumber: string, date: string): Promise<boolean> => {
   const response = await fetch(`${API_BASE}/check`, {
