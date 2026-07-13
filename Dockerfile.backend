@@ -1,8 +1,6 @@
 FROM node:18-alpine
 
-WORKDIR /app
-
-# Copy package files
+WORKDIR /app# Copy package files
 COPY package*.json ./
 
 # Install dependencies
@@ -24,4 +22,4 @@ ENV DB_PATH=/app/data/vouchers.db
 RUN mkdir -p /app/data
 
 # Start the application
-CMD ["npm", "start"]
+CMD ["node", "dist/main.js"]

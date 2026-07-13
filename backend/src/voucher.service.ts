@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import initSqlJs from 'sql.js';
-import type { Database } from 'sql.js';
 import * as fs from 'fs';
+import initSqlJs, { type Database } from 'sql.js';
 
 export interface VoucherRecord {
   id?: number;
