@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import * as initSqlJs from 'sql.js';
+import initSqlJs from 'sql.js';
 import type { Database } from 'sql.js';
 import * as fs from 'fs';
 
@@ -19,7 +19,7 @@ export interface VoucherRecord {
 @Injectable()
 export class VoucherService {
   private db: Database | null = null;
-  private dbPath = process.env.DB_PATH || './vouchers.db';
+  private dbPath = './vouchers.db';
 
   async initDatabase(): Promise<void> {
     const SQL = await initSqlJs();
