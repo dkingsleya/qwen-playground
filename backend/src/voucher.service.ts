@@ -19,7 +19,7 @@ export interface VoucherRecord {
 @Injectable()
 export class VoucherService {
   private db: Database | null = null;
-  private dbPath = '/workspace/backend/vouchers.db';
+  private dbPath = process.env.DB_PATH || './vouchers.db';
 
   async initDatabase(): Promise<void> {
     const SQL = await initSqlJs();

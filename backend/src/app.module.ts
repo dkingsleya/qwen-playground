@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, OnModuleInit } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { VoucherService } from './voucher.service';
 
@@ -7,4 +7,10 @@ import { VoucherService } from './voucher.service';
   controllers: [AppController],
   providers: [VoucherService],
 })
-export class AppModule {}
+export class AppModule implements OnModuleInit {
+  constructor(private readonly voucherService: VoucherService) {}
+
+  async onModuleInit(): Promise<void> {
+    await this.voucherService.initDatabase();
+  }
+}
