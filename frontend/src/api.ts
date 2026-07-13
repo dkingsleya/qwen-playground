@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 export interface CheckRequest {
   flightNumber: string;
   date: string;
