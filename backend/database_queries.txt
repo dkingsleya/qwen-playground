@@ -1,0 +1,75 @@
+CREATE TABLE IF NOT EXISTS vouchers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    crew_name TEXT NOT NULL,
+    crew_id TEXT NOT NULL,
+    flight_number TEXT NOT NULL,
+    flight_date TEXT NOT NULL,
+    aircraft_type TEXT NOT NULL,
+    seat1 TEXT NOT NULL,
+    seat2 TEXT NOT NULL,
+    seat3 TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username varchar(255) NOT NULL UNIQUE,
+    email varchar(255) UNIQUE NULL,
+    privilege varchar(255) NOT NULL,
+    password_hash varchar(255) NOT NULL,
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_vouchers_crew_id
+    ON vouchers (crew_id);
+
+CREATE INDEX IF NOT EXISTS idx_vouchers_flight
+    ON vouchers (flight_number, flight_date);
+
+CREATE INDEX IF NOT EXISTS idx_vouchers_created_at
+    ON vouchers (created_at);
+
+INSERT INTO vouchers (
+    crew_name,
+    crew_id,
+    flight_number,
+    flight_date,
+    aircraft_type,
+    seat1,
+    seat2,
+    seat3
+) VALUES (
+    'John Smith',
+    'CR12345',
+    'SQ318',
+    '2026-07-13',
+    'Airbus A350-900',
+    '12A',
+    '12B',
+    '12C'
+);
+
+INSERT INTO users (
+    username,
+    email,
+    privilege,
+    password_hash,
+    created_at,
+    updated_at
+) VALUES (
+    'DV3',
+    'email@email.com',
+    '3',
+   '$2b$10$uasl8PcCBkoeY7fjJiF2nuOqI6bQhBQRJT0qdyyEtofS.syU6A2jW',
+    '2026-07-13',
+    '2026-07-13'
+);
+
+ id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username varchar(255) NOT NULL UNIQUE,
+    email varchar(255) UNIQUE NULL,
+    privilege varchar(255) NOT NULL,
+    password_hash varchar(255) NOT NULL,
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    updated_at TEXT NOT NULL DEFAULT (datetime('now'))
