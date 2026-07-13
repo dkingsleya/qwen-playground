@@ -29,7 +29,7 @@ export interface ErrorResponse {
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 export const checkVouchers = async (flightNumber: string, date: string): Promise<boolean> => {
-  const response = await fetch(`${API_BASE}/check`, {
+  const response = await fetch(`${API_BASE}/api/check`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export const checkVouchers = async (flightNumber: string, date: string): Promise
 };
 
 export const generateVouchers = async (request: GenerateRequest): Promise<string[]> => {
-  const response = await fetch(`${API_BASE}/generate`, {
+  const response = await fetch(`${API_BASE}/api/generate`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
